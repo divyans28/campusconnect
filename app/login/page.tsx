@@ -1,23 +1,23 @@
 'use client'
 
 import { useState } from 'react'
+import { signInServer } from '@/lib/auth'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signIn } from '@/lib/auth'
 
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  async function handleLogin(formData: FormData) {
     setError('')
     setLoading(true)
 
-    const result = await signIn(email, password)
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+
+    const result = await signInServer(email, password)
 
     if (result.error) {
       setError(result.error)
@@ -25,7 +25,6 @@ export default function LoginPage() {
       return
     }
 
-    // Redirect to dashboard on success
     router.push('/app')
     router.refresh()
   }
@@ -45,7 +44,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form action={handleLogin} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -53,8 +52,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="you@example.com"
@@ -68,8 +66,7 @@ export default function LoginPage() {
               <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="••••••••"

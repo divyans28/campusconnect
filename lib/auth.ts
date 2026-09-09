@@ -1,8 +1,11 @@
 import { createClient } from '@/lib/supabase/client'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createServerClient } from '@/lib/supabase/server'
 import type { Profile } from '@/lib/types'
 
 export async function signUp(email: string, password: string, name: string) {
+  'use server'
+
   const adminSupabase = createAdminClient()
 
   // Create user in Supabase Auth using admin client (bypasses email confirmation)
@@ -49,6 +52,23 @@ export async function signUp(email: string, password: string, name: string) {
 
 export async function signIn(email: string, password: string) {
   const supabase = createClient()
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  })
+
+  if (error) {
+    return { error: error.message }
+  }
+
+  return { success: true, user: data.user }
+}
+
+export async function signInServer(email: string, password: string) {
+  'use server'
+
+  const supabase = await createServerClient()
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email,

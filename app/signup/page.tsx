@@ -1,35 +1,36 @@
 'use client'
 
 import { useState } from 'react'
+import { signUp } from '@/lib/auth'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { signUp } from '@/lib/auth'
 
 export default function SignupPage() {
   const router = useRouter()
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  async function handleSignup(formData: FormData) {
     setError('')
+    setLoading(true)
+
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    const confirmPassword = formData.get('confirmPassword') as string
 
     // Basic validation
     if (password !== confirmPassword) {
       setError('Passwords do not match')
+      setLoading(false)
       return
     }
 
     if (password.length < 6) {
       setError('Password must be at least 6 characters')
+      setLoading(false)
       return
     }
-
-    setLoading(true)
 
     const result = await signUp(email, password, name)
 
@@ -39,7 +40,6 @@ export default function SignupPage() {
       return
     }
 
-    // Redirect to dashboard on success
     router.push('/app')
     router.refresh()
   }
@@ -59,7 +59,7 @@ export default function SignupPage() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form action={handleSignup} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
@@ -67,8 +67,7 @@ export default function SignupPage() {
               <input
                 type="text"
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="name"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="John Doe"
@@ -82,8 +81,7 @@ export default function SignupPage() {
               <input
                 type="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="you@example.com"
@@ -97,8 +95,7 @@ export default function SignupPage() {
               <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
                 required
                 minLength={6}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
@@ -113,8 +110,7 @@ export default function SignupPage() {
               <input
                 type="password"
                 id="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                name="confirmPassword"
                 required
                 minLength={6}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"

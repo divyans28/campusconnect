@@ -1,32 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import { signInServer } from '@/lib/auth'
+import { handleLogin } from './actions'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleLogin(formData: FormData) {
+  async function onSubmit(formData: FormData) {
     setError('')
     setLoading(true)
 
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
+    const result = await handleLogin(formData)
 
-    const result = await signInServer(email, password)
-
-    if (result.error) {
+    if (result && result.error) {
       setError(result.error)
       setLoading(false)
-      return
     }
-
-    router.push('/app')
-    router.refresh()
   }
 
   return (
@@ -44,7 +35,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form action={handleLogin} className="space-y-6">
+          <form action={onSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email

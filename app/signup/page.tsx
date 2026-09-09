@@ -1,47 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import { signUp } from '@/lib/auth'
+import { handleSignup } from './actions'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 export default function SignupPage() {
-  const router = useRouter()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleSignup(formData: FormData) {
+  async function onSubmit(formData: FormData) {
     setError('')
     setLoading(true)
 
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-    const confirmPassword = formData.get('confirmPassword') as string
+    const result = await handleSignup(formData)
 
-    // Basic validation
-    if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      setLoading(false)
-      return
-    }
-
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters')
-      setLoading(false)
-      return
-    }
-
-    const result = await signUp(email, password, name)
-
-    if (result.error) {
+    if (result && result.error) {
       setError(result.error)
       setLoading(false)
-      return
     }
-
-    router.push('/app')
-    router.refresh()
   }
 
   return (
@@ -59,7 +35,7 @@ export default function SignupPage() {
             </div>
           )}
 
-          <form action={handleSignup} className="space-y-4">
+          <form action={onSubmit} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name

@@ -3,12 +3,13 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import type { Profile } from '@/lib/types'
 
 export async function signUp(email: string, password: string, name: string) {
-  const supabase = createClient()
+  const adminSupabase = createAdminClient()
 
-  // Create user in Supabase Auth
-  const { data: authData, error: authError } = await supabase.auth.signUp({
+  // Create user in Supabase Auth using admin client (bypasses email confirmation)
+  const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
     email,
     password,
+    emailConfirm: true, // Auto-confirm email for development
   })
 
   if (authError) {
@@ -18,9 +19,6 @@ export async function signUp(email: string, password: string, name: string) {
   if (!authData.user) {
     return { error: 'Failed to create user' }
   }
-
-  // Create profile (we'll do this with admin client to bypass RLS for initial creation)
-  const adminSupabase = createAdminClient()
 
   // Generate a simple USN for now (user can update later)
   const usn = `TEMP${Date.now().toString().slice(-6)}`

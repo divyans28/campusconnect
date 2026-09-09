@@ -1,9 +1,9 @@
+'use server'
+
 import { signInServer } from '@/lib/auth-server'
 import { redirect } from 'next/navigation'
 
 export async function handleLogin(formData: FormData) {
-  'use server'
-
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 

@@ -1,4 +1,4 @@
-import { signUp } from '@/lib/auth'
+import { signUp } from '@/lib/auth-server'
 import { redirect } from 'next/navigation'
 
 export async function handleSignup(formData: FormData) {

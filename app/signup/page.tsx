@@ -32,7 +32,7 @@ export default function SignupPage() {
 
     const supabase = createClient()
 
-    // Step 1: Create auth user
+    // Try with absolutely no options
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
@@ -44,17 +44,15 @@ export default function SignupPage() {
       return
     }
 
-    if (!authData.user) {
-      setError('Failed to create user')
+    // If signup succeeded and user is returned, redirect to dashboard
+    if (authData.user) {
+      router.push('/app')
+      router.refresh()
+    } else {
+      // If no user returned, check if email confirmation is needed
+      setError('Account created! Please check your email for confirmation.')
       setLoading(false)
-      return
     }
-
-    // Step 2: Create profile (we'll do this after login for now)
-    // For simplicity, we'll redirect to a profile setup page later
-    // For now, just redirect to dashboard
-    router.push('/app')
-    router.refresh()
   }
 
   return (

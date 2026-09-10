@@ -1,9 +1,9 @@
-import { createClient as createServerClient } from '@/lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import type { Profile } from '@/lib/types'
 
 export async function signUp(email: string, password: string, name: string) {
-  const supabase = await createServerClient()
+  const supabase = await createClient()
 
   // Create user in Supabase Auth with auto-confirm
   const { data: authData, error: authError } = await supabase.auth.signUp({
@@ -56,7 +56,7 @@ export async function signUp(email: string, password: string, name: string) {
 }
 
 export async function signInServer(email: string, password: string) {
-  const supabase = await createServerClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
@@ -71,7 +71,7 @@ export async function signInServer(email: string, password: string) {
 }
 
 export async function getCurrentUserServer() {
-  const supabase = await createServerClient()
+  const supabase = await createClient()
 
   const { data: { user }, error } = await supabase.auth.getUser()
 

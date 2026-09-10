@@ -62,6 +62,9 @@ export default function Navbar() {
                 <Link href="/app" className="text-gray-700 hover:text-blue-600 transition">
                   Dashboard
                 </Link>
+                <Link href="/app/profile" className="text-gray-700 hover:text-blue-600 transition">
+                  Profile
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="text-gray-700 hover:text-blue-600 transition"
@@ -135,6 +138,13 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
+                </Link>
+                <Link
+                  href="/app/profile"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Profile
                 </Link>
                 <button
                   onClick={() => {

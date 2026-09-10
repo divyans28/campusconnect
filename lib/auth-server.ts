@@ -1,15 +1,20 @@
-import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient as createServerClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { Profile } from '@/lib/types'
 
 export async function signUp(email: string, password: string, name: string) {
-  const adminSupabase = createAdminClient()
+  const supabase = await createServerClient()
 
-  // Create user in Supabase Auth using admin client (bypasses email confirmation)
-  const { data: authData, error: authError } = await adminSupabase.auth.admin.createUser({
+  // Create user in Supabase Auth with auto-confirm
+  const { data: authData, error: authError } = await supabase.auth.signUp({
     email,
     password,
-    emailConfirm: true, // Auto-confirm email for development
+    options: {
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/app`,
+      data: {
+        email_confirm: true, // Auto-confirm email for development
+      },
+    },
   })
 
   if (authError) {
@@ -19,6 +24,9 @@ export async function signUp(email: string, password: string, name: string) {
   if (!authData.user) {
     return { error: 'Failed to create user' }
   }
+
+  // Create profile using admin client (bypasses RLS for initial creation)
+  const adminSupabase = createAdminClient()
 
   // Generate a simple USN for now (user can update later)
   const usn = `TEMP${Date.now().toString().slice(-6)}`

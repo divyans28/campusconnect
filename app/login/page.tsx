@@ -1,23 +1,37 @@
 'use client'
 
 import { useState } from 'react'
-import { handleLogin } from './actions'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function LoginPage() {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function onSubmit(formData: FormData) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setError('')
     setLoading(true)
 
-    const result = await handleLogin(formData)
+    const supabase = createClient()
 
-    if (result && result.error) {
-      setError(result.error)
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      setError(error.message)
       setLoading(false)
+      return
     }
+
+    router.push('/app')
+    router.refresh()
   }
 
   return (
@@ -35,7 +49,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form action={onSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -43,7 +57,8 @@ export default function LoginPage() {
               <input
                 type="email"
                 id="email"
-                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="you@example.com"
@@ -57,7 +72,8 @@ export default function LoginPage() {
               <input
                 type="password"
                 id="password"
-                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
                 placeholder="••••••••"

@@ -72,9 +72,12 @@ export default async function DashboardPage() {
             <p className="text-gray-600 text-sm mb-4">
               Find teammates for hackathons, events, and projects.
             </p>
-            <button className="text-blue-600 font-semibold text-sm hover:text-blue-700">
-              Coming soon →
-            </button>
+            <Link
+              href="/app/teams"
+              className="text-blue-600 font-semibold text-sm hover:text-blue-700"
+            >
+              Go to Team Finder →
+            </Link>
           </div>
         </div>
       </div>

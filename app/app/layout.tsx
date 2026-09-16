@@ -30,6 +30,12 @@ export default function AppLayout({
               Issues
             </Link>
             <Link
+              href="/app/teams"
+              className="text-gray-700 hover:text-blue-600 transition font-medium"
+            >
+              Teams
+            </Link>
+            <Link
               href="/app/profile"
               className="text-gray-700 hover:text-blue-600 transition font-medium"
             >

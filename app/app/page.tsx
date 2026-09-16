@@ -46,9 +46,12 @@ export default async function DashboardPage() {
             <p className="text-gray-600 text-sm mb-4">
               Report or search for lost and found items on campus.
             </p>
-            <button className="text-blue-600 font-semibold text-sm hover:text-blue-700">
-              Coming soon →
-            </button>
+            <Link
+              href="/app/lost-found"
+              className="text-blue-600 font-semibold text-sm hover:text-blue-700"
+            >
+              Go to Lost & Found →
+            </Link>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">

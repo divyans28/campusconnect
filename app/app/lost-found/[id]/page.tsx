@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getCurrentUserServer } from '@/lib/auth-server'
 import { getItem } from '../actions'
-import ItemDetails from './item-details'
+import ItemDetails from '../item-details'
 import AppLayout from '../../layout'
 
 export default async function ItemDetailsPage({

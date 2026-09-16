@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getCurrentUserServer } from '@/lib/auth-server'
 import { getIssue } from '../actions'
-import IssueDetails from './issue-details'
+import IssueDetails from '../issue-details'
 import AppLayout from '../../layout'
 
 export default async function IssueDetailsPage({

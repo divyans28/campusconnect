@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
 import { getCurrentUserServer } from '@/lib/auth-server'
-import { getItem } from '../actions'
-import ItemDetails from './item-details'
+import { getIssue } from '../actions'
+import IssueDetails from './issue-details'
 import AppLayout from '../../layout'
 
-export default async function ItemDetailsPage({
+export default async function IssueDetailsPage({
   params,
 }: {
   params: Promise<{ id: string }>
@@ -16,25 +16,25 @@ export default async function ItemDetailsPage({
   }
 
   const { id } = await params
-  const item = await getItem(id)
+  const issue = await getIssue(id)
 
-  if (!item) {
+  if (!issue) {
     return (
       <AppLayout>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <p className="text-gray-500">Item not found</p>
+            <p className="text-gray-500">Issue not found</p>
           </div>
         </div>
       </AppLayout>
     )
   }
 
-  const isOwner = item.user_id === user.id
+  const isOwner = issue.user_id === user.id
 
   return (
     <AppLayout>
-      <ItemDetails item={item} isOwner={isOwner} userId={user.id} />
+      <IssueDetails issue={issue} isOwner={isOwner} userId={user.id} />
     </AppLayout>
   )
 }

@@ -24,6 +24,12 @@ export default function AppLayout({
               Lost & Found
             </Link>
             <Link
+              href="/app/issues"
+              className="text-gray-700 hover:text-blue-600 transition font-medium"
+            >
+              Issues
+            </Link>
+            <Link
               href="/app/profile"
               className="text-gray-700 hover:text-blue-600 transition font-medium"
             >

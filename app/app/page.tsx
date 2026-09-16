@@ -59,9 +59,12 @@ export default async function DashboardPage() {
             <p className="text-gray-600 text-sm mb-4">
               Report campus issues and track their status.
             </p>
-            <button className="text-blue-600 font-semibold text-sm hover:text-blue-700">
-              Coming soon →
-            </button>
+            <Link
+              href="/app/issues"
+              className="text-blue-600 font-semibold text-sm hover:text-blue-700"
+            >
+              Go to Issue Reporting →
+            </Link>
           </div>
 
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">

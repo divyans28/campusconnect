@@ -51,7 +51,8 @@ export default function ProfileForm({ user, profile }: ProfileFormProps) {
     setSuccess('Profile updated successfully!')
     setLoading(false)
 
-    // Refresh the page to show updated data
+    // Redirect to dashboard after saving
+    router.push('/app')
     router.refresh()
   }
 

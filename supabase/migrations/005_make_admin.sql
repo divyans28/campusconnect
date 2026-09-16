@@ -7,8 +7,3 @@ SET role = 'admin'
 WHERE user_id = (
   SELECT id FROM auth.users WHERE email = 'YOUR_EMAIL_HERE'
 );
-
--- Verify the change
-SELECT email, role 
-FROM auth.users 
-JOIN public.profiles ON auth.users.id = public.profiles.user_id;

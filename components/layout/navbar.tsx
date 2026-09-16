@@ -62,11 +62,20 @@ export default function Navbar() {
                 <Link href="/app" className="text-gray-700 hover:text-blue-600 transition">
                   Dashboard
                 </Link>
-                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition">
-                  Admin
+                <Link href="/app/lost-found" className="text-gray-700 hover:text-blue-600 transition">
+                  Lost & Found
+                </Link>
+                <Link href="/app/issues" className="text-gray-700 hover:text-blue-600 transition">
+                  Issues
+                </Link>
+                <Link href="/app/teams" className="text-gray-700 hover:text-blue-600 transition">
+                  Teams
                 </Link>
                 <Link href="/app/profile" className="text-gray-700 hover:text-blue-600 transition">
                   Profile
+                </Link>
+                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition">
+                  Admin
                 </Link>
                 <button
                   onClick={handleLogout}
@@ -143,11 +152,25 @@ export default function Navbar() {
                   Dashboard
                 </Link>
                 <Link
-                  href="/admin"
+                  href="/app/lost-found"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Admin
+                  Lost & Found
+                </Link>
+                <Link
+                  href="/app/issues"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Issues
+                </Link>
+                <Link
+                  href="/app/teams"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Teams
                 </Link>
                 <Link
                   href="/app/profile"
@@ -155,6 +178,13 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
+                </Link>
+                <Link
+                  href="/admin"
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Admin
                 </Link>
                 <button
                   onClick={() => {

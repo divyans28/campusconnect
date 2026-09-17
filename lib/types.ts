@@ -69,9 +69,9 @@ export interface Event {
 
 export interface Team {
   id: string
-  event_id: string
   user_id: string // team leader
   team_name: string
+  event_name: string
   description: string
   current_members: number
   max_members: number

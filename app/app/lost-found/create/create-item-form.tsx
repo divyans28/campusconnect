@@ -4,11 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createItem } from '../actions'
 
-interface CreateItemFormProps {
-  userId: string
-}
-
-export default function CreateItemForm({ userId }: CreateItemFormProps) {
+export default function CreateItemForm() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -35,10 +31,7 @@ export default function CreateItemForm({ userId }: CreateItemFormProps) {
     setError('')
     setLoading(true)
 
-    const result = await createItem({
-      user_id: userId,
-      ...formData,
-    })
+    const result = await createItem(formData)
 
     if (result.error) {
       setError(result.error)

@@ -5,7 +5,6 @@ import { getCurrentUserServer } from '@/lib/auth-server'
 import type { Team } from '@/lib/types'
 
 export async function createTeam(formData: {
-  user_id: string
   team_name: string
   event_name: string
   description: string
@@ -26,7 +25,7 @@ export async function createTeam(formData: {
   const { error } = await supabase
     .from('teams')
     .insert({
-      user_id: formData.user_id,
+      user_id: user.id, // Use authenticated user's ID, not from form
       team_name: formData.team_name,
       event_name: formData.event_name,
       description: formData.description,

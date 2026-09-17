@@ -4,11 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createIssue } from '../actions'
 
-interface CreateIssueFormProps {
-  userId: string
-}
-
-export default function CreateIssueForm({ userId }: CreateIssueFormProps) {
+export default function CreateIssueForm() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -33,10 +29,7 @@ export default function CreateIssueForm({ userId }: CreateIssueFormProps) {
     setError('')
     setLoading(true)
 
-    const result = await createIssue({
-      user_id: userId,
-      ...formData,
-    })
+    const result = await createIssue(formData)
 
     if (result.error) {
       setError(result.error)

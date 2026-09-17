@@ -18,7 +18,7 @@ export default async function CreateItemPage() {
           <p className="text-gray-600 mt-2">Report a lost or found item on campus</p>
         </div>
 
-        <CreateItemForm userId={user.id} />
+        <CreateItemForm />
       </div>
     </AppLayout>
   )

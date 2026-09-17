@@ -4,11 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createTeam } from '../actions'
 
-interface CreateTeamFormProps {
-  userId: string
-}
-
-export default function CreateTeamForm({ userId }: CreateTeamFormProps) {
+export default function CreateTeamForm() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -46,7 +42,6 @@ export default function CreateTeamForm({ userId }: CreateTeamFormProps) {
       .filter(s => s.length > 0)
 
     const result = await createTeam({
-      user_id: userId,
       team_name: formData.team_name,
       event_name: formData.event_name,
       description: formData.description,

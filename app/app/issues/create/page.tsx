@@ -18,7 +18,7 @@ export default async function CreateIssuePage() {
           <p className="text-gray-600 mt-2">Report a campus issue that needs attention</p>
         </div>
 
-        <CreateIssueForm userId={user.id} />
+        <CreateIssueForm />
       </div>
     </AppLayout>
   )

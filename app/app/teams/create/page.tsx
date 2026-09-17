@@ -18,7 +18,7 @@ export default async function CreateTeamPage() {
           <p className="text-gray-600 mt-2">Create a team listing to find teammates</p>
         </div>
 
-        <CreateTeamForm userId={user.id} />
+        <CreateTeamForm />
       </div>
     </AppLayout>
   )

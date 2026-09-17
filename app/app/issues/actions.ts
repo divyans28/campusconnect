@@ -5,7 +5,6 @@ import { getCurrentUserServer } from '@/lib/auth-server'
 import type { Issue } from '@/lib/types'
 
 export async function createIssue(formData: {
-  user_id: string
   title: string
   category: string
   location: string
@@ -23,7 +22,7 @@ export async function createIssue(formData: {
   const { error } = await supabase
     .from('issues')
     .insert({
-      user_id: formData.user_id,
+      user_id: user.id, // Use authenticated user's ID, not from form
       title: formData.title,
       category: formData.category,
       location: formData.location,

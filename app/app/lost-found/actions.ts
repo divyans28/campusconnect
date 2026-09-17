@@ -5,7 +5,6 @@ import { getCurrentUserServer } from '@/lib/auth-server'
 import type { LostFoundItem } from '@/lib/types'
 
 export async function createItem(formData: {
-  user_id: string
   type: 'lost' | 'found'
   title: string
   category: string
@@ -25,7 +24,7 @@ export async function createItem(formData: {
   const { error } = await supabase
     .from('lost_found_items')
     .insert({
-      user_id: formData.user_id,
+      user_id: user.id, // Use authenticated user's ID, not from form
       type: formData.type,
       title: formData.title,
       category: formData.category,

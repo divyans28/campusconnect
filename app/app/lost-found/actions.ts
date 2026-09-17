@@ -4,6 +4,11 @@ import { createClient } from '@/lib/supabase/server'
 import { getCurrentUserServer } from '@/lib/auth-server'
 import type { LostFoundItem } from '@/lib/types'
 
+interface ActionResult {
+  success?: boolean
+  error?: string
+}
+
 export async function createItem(formData: {
   type: 'lost' | 'found'
   title: string
@@ -12,7 +17,7 @@ export async function createItem(formData: {
   location: string
   date: string
   image_url?: string
-}) {
+}): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -58,7 +63,7 @@ export async function getItem(id: string): Promise<LostFoundItem | null> {
   return data as LostFoundItem
 }
 
-export async function markAsResolved(id: string) {
+export async function markAsResolved(id: string): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -80,7 +85,7 @@ export async function markAsResolved(id: string) {
   return { success: true }
 }
 
-export async function deleteItem(id: string) {
+export async function deleteItem(id: string): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {

@@ -4,6 +4,11 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getCurrentUserServer } from '@/lib/auth-server'
 
+interface ActionResult {
+  success?: boolean
+  error?: string
+}
+
 export async function updateProfile(formData: {
   name: string
   usn: string
@@ -13,7 +18,7 @@ export async function updateProfile(formData: {
   semester: number
   skills: string
   interests: string
-}) {
+}): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {

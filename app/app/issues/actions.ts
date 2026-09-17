@@ -4,13 +4,18 @@ import { createClient } from '@/lib/supabase/server'
 import { getCurrentUserServer } from '@/lib/auth-server'
 import type { Issue } from '@/lib/types'
 
+interface ActionResult {
+  success?: boolean
+  error?: string
+}
+
 export async function createIssue(formData: {
   title: string
   category: string
   location: string
   description: string
   image_url?: string
-}) {
+}): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -54,7 +59,7 @@ export async function getIssue(id: string): Promise<Issue | null> {
   return data as Issue
 }
 
-export async function updateIssueStatus(id: string, status: string) {
+export async function updateIssueStatus(id: string, status: string): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -76,7 +81,7 @@ export async function updateIssueStatus(id: string, status: string) {
   return { success: true }
 }
 
-export async function deleteIssue(id: string) {
+export async function deleteIssue(id: string): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {

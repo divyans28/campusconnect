@@ -4,6 +4,11 @@ import { createClient } from '@/lib/supabase/server'
 import { getCurrentUserServer } from '@/lib/auth-server'
 import type { Team } from '@/lib/types'
 
+interface ActionResult {
+  success?: boolean
+  error?: string
+}
+
 export async function createTeam(formData: {
   team_name: string
   event_name: string
@@ -13,7 +18,7 @@ export async function createTeam(formData: {
   required_skills: string[]
   roles_needed: string[]
   application_deadline?: string | null
-}) {
+}): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -59,7 +64,7 @@ export async function getTeam(id: string): Promise<Team | null> {
   return data as Team
 }
 
-export async function updateTeam(id: string, updates: Partial<Team>) {
+export async function updateTeam(id: string, updates: Partial<Team>): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {
@@ -81,7 +86,7 @@ export async function updateTeam(id: string, updates: Partial<Team>) {
   return { success: true }
 }
 
-export async function deleteTeam(id: string) {
+export async function deleteTeam(id: string): Promise<ActionResult> {
   const user = await getCurrentUserServer()
 
   if (!user) {

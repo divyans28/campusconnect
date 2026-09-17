@@ -14,7 +14,7 @@ interface IssueDetailsProps {
 export default function IssueDetails({ issue, isOwner, userId }: IssueDetailsProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState<Issue['status']>(issue.status)
+  const [status, setStatus] = useState<Issue['status']>(issue.status) // Issue status state
 
   const handleStatusChange = async (newStatus: Issue['status']) => {
     setLoading(true)

@@ -48,47 +48,47 @@ export default function Navbar() {
             <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
               <span className="text-white font-bold text-xl">C</span>
             </div>
-            <span className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">CampusConnect</span>
+            <span className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">CampusConnect</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+            <Link href="/" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
               Home
             </Link>
 
             {loading ? (
-              <div className="text-gray-400">Loading...</div>
+              <div className="text-gray-400 dark:text-gray-500">Loading...</div>
             ) : user ? (
               <>
-                <Link href="/app" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/app" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Dashboard
                 </Link>
-                <Link href="/app/lost-found" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/app/lost-found" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Lost & Found
                 </Link>
-                <Link href="/app/issues" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/app/issues" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Issues
                 </Link>
-                <Link href="/app/teams" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/app/teams" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Teams
                 </Link>
-                <Link href="/app/profile" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/app/profile" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Profile
                 </Link>
-                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/admin" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Admin
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-700 hover:text-red-600 transition font-medium hover:scale-105 transform"
+                  className="text-gray-700 dark:text-gray-200 hover:text-red-600 dark:hover:text-red-400 transition font-medium hover:scale-105 transform"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link href="/login" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
+                <Link href="/login" className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium hover:scale-105 transform">
                   Login
                 </Link>
                 <Link
@@ -150,57 +150,57 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-2">
+          <div className="md:hidden py-4 space-y-2 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
             <Link
               href="/"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+              className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
 
             {loading ? (
-              <div className="px-4 py-2 text-gray-400">Loading...</div>
+              <div className="px-4 py-2 text-gray-400 dark:text-gray-500">Loading...</div>
             ) : user ? (
               <>
                 <Link
                   href="/app"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/app/lost-found"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Lost & Found
                 </Link>
                 <Link
                   href="/app/issues"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Issues
                 </Link>
                 <Link
                   href="/app/teams"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Teams
                 </Link>
                 <Link
                   href="/app/profile"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Profile
                 </Link>
                 <Link
                   href="/admin"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Admin
@@ -210,7 +210,7 @@ export default function Navbar() {
                     handleLogout()
                     setIsMenuOpen(false)
                   }}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                 >
                   Logout
                 </button>
@@ -219,14 +219,14 @@ export default function Navbar() {
               <>
                 <Link
                   href="/login"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Login
                 </Link>
                 <Link
                   href="/signup"
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
+                  className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign Up

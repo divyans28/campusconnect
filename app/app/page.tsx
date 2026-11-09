@@ -17,8 +17,8 @@ export default async function DashboardPage() {
     <AppLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome to CampusConnect</h1>
-          <p className="text-gray-600 mt-2">Your campus dashboard</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Welcome to CampusConnect</h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">Your campus dashboard</p>
         </div>
 
         {/* Profile Card */}
@@ -41,7 +41,7 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700 group">
             <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
               <svg
                 className="w-6 h-6 text-white"
@@ -57,19 +57,19 @@ export default async function DashboardPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900">Lost & Found</h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Lost & Found</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
               Report or search for lost and found items on campus.
             </p>
             <Link
               href="/app/lost-found"
-              className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 group-hover:translate-x-1 transition-transform"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:text-blue-700 dark:hover:text-blue-300 group-hover:translate-x-1 transition-transform"
             >
               Go to Lost & Found →
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700 group">
             <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
               <svg
                 className="w-6 h-6 text-white"
@@ -85,19 +85,19 @@ export default async function DashboardPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900">Issue Reporting</h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Issue Reporting</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
               Report campus issues and track their status.
             </p>
             <Link
               href="/app/issues"
-              className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 group-hover:translate-x-1 transition-transform"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:text-blue-700 dark:hover:text-blue-300 group-hover:translate-x-1 transition-transform"
             >
               Go to Issue Reporting →
             </Link>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 group">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700 group">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
               <svg
                 className="w-6 h-6 text-white"
@@ -113,13 +113,13 @@ export default async function DashboardPage() {
                 />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold mb-2 text-gray-900">Team Finder</h2>
-            <p className="text-gray-600 text-sm mb-4">
+            <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Team Finder</h2>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
               Find teammates for hackathons, events, and projects.
             </p>
             <Link
               href="/app/teams"
-              className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 group-hover:translate-x-1 transition-transform"
+              className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold text-sm hover:text-blue-700 dark:hover:text-blue-300 group-hover:translate-x-1 transition-transform"
             >
               Go to Team Finder →
             </Link>

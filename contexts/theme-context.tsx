@@ -36,6 +36,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(prev => prev === 'light' ? 'dark' : 'light')
   }
 
+  // Prevent hydration mismatch by not rendering theme-dependent UI until mounted
   if (!mounted) {
     return <>{children}</>
   }
@@ -50,7 +51,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext)
   if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
+    // Return default values when not in provider (prevents hydration errors)
+    return { theme: 'light', toggleTheme: () => {} }
   }
   return context
 }

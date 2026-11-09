@@ -38,20 +38,20 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">C</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+              <span className="text-white font-bold text-xl">C</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">CampusConnect</span>
+            <span className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">CampusConnect</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 transition">
+            <Link href="/" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
               Home
             </Link>
 
@@ -59,39 +59,39 @@ export default function Navbar() {
               <div className="text-gray-400">Loading...</div>
             ) : user ? (
               <>
-                <Link href="/app" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/app" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Dashboard
                 </Link>
-                <Link href="/app/lost-found" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/app/lost-found" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Lost & Found
                 </Link>
-                <Link href="/app/issues" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/app/issues" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Issues
                 </Link>
-                <Link href="/app/teams" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/app/teams" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Teams
                 </Link>
-                <Link href="/app/profile" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/app/profile" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Profile
                 </Link>
-                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/admin" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Admin
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="text-gray-700 hover:text-blue-600 transition"
+                  className="text-gray-700 hover:text-red-600 transition font-medium hover:scale-105 transform"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link href="/login" className="text-gray-700 hover:text-blue-600 transition">
+                <Link href="/login" className="text-gray-700 hover:text-blue-600 transition font-medium hover:scale-105 transform">
                   Login
                 </Link>
                 <Link
                   href="/signup"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition shadow-md hover:shadow-lg"
                 >
                   Sign Up
                 </Link>
